@@ -36,40 +36,56 @@ public class VectorExercises : MonoBehaviour
 
     public void CalculateGameDimensions()
     {
-
+        GameHeight = Camera.main.orthographicSize * 2f;
+        GameWidth = Camera.main.aspect * GameHeight;
+        maxX = GameWidth / 2;
+        maxY = GameHeight / 2;
+        minX = -maxX;
+        minY = -maxY;
     }
 
     void Question2a()
     {
+        startPt = new Vector2(0, 0);
 
     }
 
     void Question2b(int n)
     {
-
+        CalculateGameDimensions();
+        for (int i = 0; i < n; i++)
+        {
+            startPt = new Vector2(Random.Range(-maxX, maxX), Random.Range(-maxY, maxY));
+            endPt = new Vector2(Random.Range(-maxX, maxX), Random.Range(-maxY, maxY));
+            drawnLine = lineFactory.GetLine(startPt, endPt, 0.02f, Color.black);
+            drawnLine.EnableDrawing(true);
+        }
     }
 
     void Question2d()
     {
-
+        DebugExtension.DebugArrow(
+            new Vector3(0,0,0),
+            new Vector3(5,5,0),
+            Color.red, 60f);
     }
 
     void Question2e(int n)
     {
+        CalculateGameDimensions();
         for (int i = 0; i < n; i++)
         {
             startPt = new Vector2(
                 Random.Range(-maxX, maxX), 
                 Random.Range(-maxY, maxY));
 
-            // Your code here
-            // ...
+            float zAxis = Random.Range(-maxY, maxY);
 
-            //DebugExtension.DebugArrow(
-            //    new Vector3(0, 0, 0),
-            //    // Your code here,
-            //    Color.white,
-            //    60f);
+            DebugExtension.DebugArrow(
+                new Vector3(0, 0, 0),
+                new Vector3(startPt.x, startPt.y, zAxis),
+                Color.white,
+                60f);
         }  
     }
 
