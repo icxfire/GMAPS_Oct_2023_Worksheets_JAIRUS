@@ -106,7 +106,7 @@ public class VectorExercises : MonoBehaviour
         DebugExtension.DebugArrow(Vector3.zero, c.ToUnityVector3(), Color.white, 60f);
 
 
-        DebugExtension.DebugArrow(b.ToUnityVector3(), c.ToUnityVector3(), Color.white, 60f);
+        DebugExtension.DebugArrow(a.ToUnityVector3(), -b.ToUnityVector3(), Color.green, 60f);
 
         //Debug.Log("Magnitude of a = " + // Your code here.ToString("F2"));
         // Your code here
