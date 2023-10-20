@@ -115,16 +115,18 @@ public class VectorExercises : MonoBehaviour
 
     public void Question3b()
     {
-        // Your code here
-        // ...
+        HVector2D a = new HVector2D(3, 5);
+        HVector2D b = a * 2;
+        HVector2D c = a / 2; // i use a new variable to compare the difference between the original a and divided one
 
-        //DebugExtension.DebugArrow(Vector3.zero, a.ToUnityVector3(), Color.red, 60f);
-        // Your code here
+        DebugExtension.DebugArrow(Vector3.zero, a.ToUnityVector3(), Color.red, 60f);
+        DebugExtension.DebugArrow(new Vector3(1, 0, 0), b.ToUnityVector3(), Color.red, 60f);
+        DebugExtension.DebugArrow(Vector3.zero, c.ToUnityVector3(), Color.red, 60f);
     }
 
     public void Question3c()
     {
-
+        HVector2D a = new HVector2D(3, 5);
     }
 
     public void Projection()

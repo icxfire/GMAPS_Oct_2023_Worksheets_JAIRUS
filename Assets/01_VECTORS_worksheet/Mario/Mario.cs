@@ -14,11 +14,12 @@ public class Mario : MonoBehaviour
 
     void Start()
     {
-
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
+        gravityDir = new Vector3(rb.position.y, planet.position.y, 0);
 
     }
 }
