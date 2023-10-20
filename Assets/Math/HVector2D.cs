@@ -50,27 +50,30 @@ public class HVector2D
         return new HVector2D(a.x / scalar, a.y / scalar);
      }
 
-     //public float Magnitude()
-     //{
+     public float Magnitude()
+     {
+        return (float)Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2));
+     }
 
-     //}
+     public void Normalize()
+     {
+        float mag = Magnitude();
+        x /= mag;
+        y /= mag;
+     }
 
-     //public void Normalize()
-     //{
-     //   float mag = Magnitude();
-     //   x /= mag;
-     //   y /= mag;
-     //}
+     public float DotProduct(HVector2D a)
+     {
+        return (x * a.x + y * a.y);
+     }
 
-     //public float DotProduct(/*???*/)
-     //{
-
-     //}
-
-     //public HVector2D Projection(/*???*/)
-     //{
-
-     //}
+     public HVector2D Projection(HVector2D a)
+     {
+        float dot = DotProduct(a);
+        float mag = a.Magnitude();
+        HVector2D projected = new HVector2D((dot / (float)Math.Pow(mag, 2)) * a.x, (dot / (float)Math.Pow(mag, 2)) * a.y);
+        return projected;
+     }
 
      //public float FindAngle(/*???*/)
      //{
