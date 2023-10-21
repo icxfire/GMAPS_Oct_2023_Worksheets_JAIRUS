@@ -17,7 +17,7 @@ public class Mario : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         gravityDir = planet.position - transform.position;
         moveDir = new Vector3(gravityDir.y, -gravityDir.x, 0);
