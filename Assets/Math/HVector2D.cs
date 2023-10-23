@@ -75,10 +75,10 @@ public class HVector2D
         return projected;
      }
 
-     //public float FindAngle(/*???*/)
-     //{
-
-     //}
+     public float FindAngle(HVector2D a)
+     {
+        return (float)Mathf.ACos(DotProduct(a) / Magnitude() * a.Magnitude());
+     }
 
     public Vector2 ToUnityVector2()
     {
