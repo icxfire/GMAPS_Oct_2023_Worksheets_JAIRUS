@@ -5,11 +5,11 @@ using System.Linq;
 
 public class SoccerPlayer : MonoBehaviour
 {
-    //public bool IsCaptain = false;
-    //public SoccerPlayer[] OtherPlayers;
-    //public float rotationSpeed = 1f;
+    public bool IsCaptain = false;
+    public SoccerPlayer[] OtherPlayers;
+    public float rotationSpeed = 1f;
 
-    //float angle = 0f;
+    float angle = 0f;
 
     //private void Start()
     //{
@@ -47,10 +47,12 @@ public class SoccerPlayer : MonoBehaviour
     //    }
     //}
 
-    //void Update()
-    //{
-
-    //}
+    void Update()
+    {
+        angle += Input.GetAxis("Horizontal") * rotationSpeed;
+        transform.localRotation = Quaternion.AngleAxis(angle, Vector3.up);
+        Debug.DrawRay(transform.position, transform.forward * 10f, Color.red);
+    }
 }
 
 
