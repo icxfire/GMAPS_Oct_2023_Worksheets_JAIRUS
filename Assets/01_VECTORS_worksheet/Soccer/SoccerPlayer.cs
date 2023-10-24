@@ -63,10 +63,9 @@ public class SoccerPlayer : MonoBehaviour
             if (angle < minAngle)
             {
                 minAngle = angle;
-                closest = OtherPlayers[i];
+                closest = OtherPlayers[i];      
             }
         }
-
         return closest;
     }
 
