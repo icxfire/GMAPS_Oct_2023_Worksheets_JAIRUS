@@ -27,9 +27,9 @@ public class HMatrix2D : MonoBehaviour
              float m20, float m21, float m22)
     {
         entries[0,0] = m00;
-        entries[1,0] = m01;
-        entries[2,0] = m02;
-        entries[0,1] = m10;
+        entries[0,1] = m01;
+        entries[0,2] = m02;
+        entries[1,0] = m10;
         entries[1,1] = m11;
         entries[1,2] = m12;
         entries[2,0] = m20;
@@ -90,7 +90,7 @@ public class HMatrix2D : MonoBehaviour
     //
     public static HMatrix2D operator *(HMatrix2D left, HMatrix2D right)
     {
-        return new HMatrix2D
+       /* return new HMatrix2D
         (
 
            left.entries[0, 0] * right.entries[0, 0] + left.entries[0, 1] * right.entries[1, 0] + left.entries[0, 2] * right.entries[2, 0],
@@ -103,8 +103,8 @@ public class HMatrix2D : MonoBehaviour
 
            left.entries[2, 0] * right.entries[0, 0] + left.entries[2, 1] * right.entries[1, 0] + left.entries[2, 2] * right.entries[2, 0],
            left.entries[2, 0] * right.entries[0, 1] + left.entries[2, 1] * right.entries[1, 1] + left.entries[2, 2] * right.entries[2, 1],
-           left.entries[2, 0] * right.entries[0, 2] + left.entries[2, 1] * right.entries[1, 2] + left.entries[2, 2] * right.entries[2, 2]); 
-        /*HMatrix2D newMatrix = new HMatrix2D();
+           left.entries[2, 0] * right.entries[0, 2] + left.entries[2, 1] * right.entries[1, 2] + left.entries[2, 2] * right.entries[2, 2]); */
+        HMatrix2D newMatrix = new HMatrix2D();
         for (int x = 0; x < 3; x++)
         {
             for (int y = 0; y < 3; y++)
@@ -116,7 +116,7 @@ public class HMatrix2D : MonoBehaviour
                 }
             }
         }
-        return newMatrix; */
+        return newMatrix; 
     }
     
     public static bool operator ==(HMatrix2D left, HMatrix2D right)
@@ -196,12 +196,20 @@ public class HMatrix2D : MonoBehaviour
 
     public void setTranslationMat(float transX, float transY)
     {
-        // your code here
+        setIdentity();
+
+        entries[0, 2] = (float)transX;
+        entries[1, 2] = (float) transY;
     }
 
     public void setRotationMat(float rotDeg)
     {
-        // your code here
+        setIdentity();
+        float rad = rotDeg * Mathf.Deg2Rad;
+        entries[0, 0] = Mathf.Cos(rad);
+        entries[0, 1] = -Mathf.Sin(rad);
+        entries[1, 0] = Mathf.Sin(rad);
+        entries[1, 1] = Mathf.Cos(rad);
     }
 
     public void setScalingMat(float scaleX, float scaleY)
