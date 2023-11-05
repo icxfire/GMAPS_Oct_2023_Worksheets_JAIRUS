@@ -81,8 +81,8 @@ public class HMatrix2D : MonoBehaviour
     public static HVector2D operator *(HMatrix2D left, HVector2D right)
     {
         return new HVector2D(
-            left.entries[0, 0] * right.x + left.entries[0, 1] * right.x + left.entries[0, 2] * right.x,
-            left.entries[1, 0] * right.x + left.entries[2, 0] * right.x + left.entries[3, 0] * right.x
+            left.entries[0, 0] * right.x + left.entries[0, 1] * right.y + left.entries[0, 2] * right.h,
+            left.entries[1, 0] * right.x + left.entries[1, 1] * right.y + left.entries[1, 2] * right.h
             );
     } 
 
@@ -199,7 +199,7 @@ public class HMatrix2D : MonoBehaviour
         setIdentity();
 
         entries[0, 2] = (float)transX;
-        entries[1, 2] = (float) transY;
+        entries[1, 2] = (float)transY;
     }
 
     public void setRotationMat(float rotDeg)
