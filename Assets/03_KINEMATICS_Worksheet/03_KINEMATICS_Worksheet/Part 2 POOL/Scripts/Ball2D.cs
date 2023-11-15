@@ -24,7 +24,7 @@ public class Ball2D : MonoBehaviour
 
     public bool IsCollidingWith(float x, float y)
     {
-        float distance = Mathf.Sqrt(Mathf.Pow(x - Input.mousePosition.x, 2) + Mathf.Pow(y - Input.mousePosition.y, 2));
+        float distance = Mathf.Sqrt(Mathf.Pow(Position.x - x, 2) + Mathf.Pow(Position.y - y, 2));
         return distance <= Radius;
     }
 
@@ -41,8 +41,9 @@ public class Ball2D : MonoBehaviour
 
     private void UpdateBall2DPhysics(float deltaTime)
     {
-        float displacementX = (1 / 2) * (Velocity.x * deltaTime);
-        float displacementY = (1 / 2) * (Velocity.y * deltaTime);
+        float displacementX =  (Velocity.x * deltaTime)/2;
+        float displacementY =  (Velocity.y * deltaTime)/2;
+        Debug.Log(displacementX);
 
         Position.x += displacementX;
         Position.y += displacementY;

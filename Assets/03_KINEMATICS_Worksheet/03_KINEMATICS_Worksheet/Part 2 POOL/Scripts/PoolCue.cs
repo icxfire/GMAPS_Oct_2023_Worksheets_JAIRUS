@@ -18,10 +18,9 @@ public class PoolCue : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
-        {
-            Vector2 mousePos = Input.mousePosition;
+        {;
             var startLinePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); // Start line drawing
-            if (ball != null && ball.IsCollidingWith(mousePos.x, mousePos.y))
+            if (ball != null && ball.IsCollidingWith(startLinePos.x, startLinePos.y))
             {
                 drawnLine = lineFactory.GetLine(startLinePos, new Vector2(ball.Position.x, ball.Position.y), 10f, Color.red);
                 drawnLine.EnableDrawing(true);
@@ -30,18 +29,17 @@ public class PoolCue : MonoBehaviour
         else if (Input.GetMouseButtonUp(0) && drawnLine != null)
         {
             drawnLine.EnableDrawing(false);
-            Vector2 mousePos = Input.mousePosition;
+            var startLinePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             //update the velocity of the white ball.
-            HVector2D v = new HVector2D(mousePos.x - ball.Position.x, mousePos.y - ball.Position.y);
+            HVector2D v = new HVector2D(ball.Position.x - startLinePos.x, ball.Position.y - startLinePos.y);
             ball.Velocity = v;
-            Debug.Log((mousePos.x - ball.Position.x, mousePos.y - ball.Position.y));
             drawnLine = null; // End line drawing            
         }
 
-                 /* if (drawnLine != null)
+                  if (drawnLine != null)
                   {
-                      drawnLine.end = /*your code here*/; // Update line end
-                                                     //}
+                      drawnLine.end = Camera.main.ScreenToWorldPoint(Input.mousePosition); // Update line end
+                  }
     }
 
     /// <summary>
