@@ -24,14 +24,14 @@ public class Ball2D : MonoBehaviour
 
     public bool IsCollidingWith(float x, float y)
     {
-        float distance = Mathf.Sqrt(Mathf.Pow(Position.x - x, 2) + Mathf.Pow(Position.y - y, 2));
+        float distance = Mathf.Sqrt(Mathf.Pow(Position.x - x, 2) + Mathf.Pow(Position.y - y, 2)); 
         return distance <= Radius;
     }
 
     public bool IsCollidingWith(Ball2D other)
     {
         float distance = Util.FindDistance(Position, other.Position);
-        return distance <= Radius + other.Radius;
+        return distance <= Radius + other.Radius; // checks for collision with other balls.
     }
 
     public void FixedUpdate()
@@ -41,9 +41,8 @@ public class Ball2D : MonoBehaviour
 
     private void UpdateBall2DPhysics(float deltaTime)
     {
-        float displacementX =  (Velocity.x * deltaTime)/2;
+        float displacementX =  (Velocity.x * deltaTime)/2; // formula is s = 1/2 (u + v / t)
         float displacementY =  (Velocity.y * deltaTime)/2;
-        Debug.Log(displacementX);
 
         Position.x += displacementX;
         Position.y += displacementY;
