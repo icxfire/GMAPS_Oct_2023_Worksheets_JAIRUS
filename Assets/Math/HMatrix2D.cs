@@ -8,7 +8,7 @@ public class HMatrix2D : MonoBehaviour
 
     public HMatrix2D()
     {
-        entries = new float[3, 3];
+        entries = new float[3, 3]; // creates a new matrix
     }
 
     public HMatrix2D(float[,] multiArray)
@@ -17,14 +17,12 @@ public class HMatrix2D : MonoBehaviour
         {
             for (int y = 0; y < 3; y++)
             {
-                entries[x, y] = multiArray[x, y];
+                entries[x, y] = multiArray[x, y]; // initializes a 3 by 3 matrix by looping through the rows and columns 
             }
         }
     }
 
-    public HMatrix2D(float m00, float m01, float m02,
-             float m10, float m11, float m12,
-             float m20, float m21, float m22)
+    public HMatrix2D(float m00, float m01, float m02, float m10, float m11, float m12, float m20, float m21, float m22) // manually creates a new matrix by allowing us to intitalize each value                                                                                                                      
     {
         entries[0,0] = m00;
         entries[0,1] = m01;
@@ -44,7 +42,7 @@ public class HMatrix2D : MonoBehaviour
         {
             for (int y = 0; y < 3; y++)
             {
-                newMatrix.entries[x, y] = (left.entries[x, y] + right.entries[x, y]);
+                newMatrix.entries[x, y] = (left.entries[x, y] + right.entries[x, y]); // matrix addition
             }
         }
         return newMatrix;
@@ -57,7 +55,7 @@ public class HMatrix2D : MonoBehaviour
         {
             for (int y = 0; y < 3; y++)
             {
-                newMatrix.entries[x, y] = (left.entries[x, y] - right.entries[x, y]);
+                newMatrix.entries[x, y] = (left.entries[x, y] - right.entries[x, y]); // matrix subtraction
             }
         }
         return newMatrix;
@@ -70,7 +68,7 @@ public class HMatrix2D : MonoBehaviour
         {
             for (int y = 0; y < 3; y++)
             {
-                newMatrix.entries[x, y] = (left.entries[x, y] * scalar);
+                newMatrix.entries[x, y] = (left.entries[x, y] * scalar); // matrix multiplication ( scalar )
             }
         }
         return newMatrix;
@@ -105,14 +103,14 @@ public class HMatrix2D : MonoBehaviour
            left.entries[2, 0] * right.entries[0, 1] + left.entries[2, 1] * right.entries[1, 1] + left.entries[2, 2] * right.entries[2, 1],
            left.entries[2, 0] * right.entries[0, 2] + left.entries[2, 1] * right.entries[1, 2] + left.entries[2, 2] * right.entries[2, 2]); */
         HMatrix2D newMatrix = new HMatrix2D();
-        for (int x = 0; x < 3; x++)
+        for (int x = 0; x < 3; x++) // checks for each row and column in the matrix
         {
             for (int y = 0; y < 3; y++)
             {
-                newMatrix.entries[x, y] = 0;
-                for (int z = 0; z < 3; z++)
+                newMatrix.entries[x, y] = 0; // sets the new matrix to have a value of 0 at all points
+                for (int z = 0; z < 3; z++) // accounts for the remultiplying of the rowws and columns e.g. [0, 0] will multiply with [0, (1), (2) and (3)]
                 {
-                    newMatrix.entries[x, y] += left.entries[x, z] * right.entries[z, y];
+                    newMatrix.entries[x, y] += left.entries[x, z] * right.entries[z, y]; // does the formula for multiplying matrices
                 }
             }
         }
@@ -125,7 +123,7 @@ public class HMatrix2D : MonoBehaviour
         {
             for (int y = 0; y < 3; y++)
             {
-                if (left.entries[x, y] != right.entries[x, y])
+                if (left.entries[x, y] != right.entries[x, y]) // checks if matrices are equal
                 {
                     return false;
                 }
@@ -140,7 +138,7 @@ public class HMatrix2D : MonoBehaviour
         {
             for (int y = 0; y < 3; y++)
             {
-                if (left.entries[x, y] != right.entries[x, y])
+                if (left.entries[x, y] != right.entries[x, y]) // checks is matrices are not equal
                 {
                     return true;
                 }
@@ -199,7 +197,7 @@ public class HMatrix2D : MonoBehaviour
         setIdentity();
 
         entries[0, 2] = (float)transX;
-        entries[1, 2] = (float)transY;
+        entries[1, 2] = (float)transY; // translation matrix (its in the slides)
     }
 
     public void setRotationMat(float rotDeg)
@@ -209,7 +207,7 @@ public class HMatrix2D : MonoBehaviour
         entries[0, 0] = Mathf.Cos(rad);
         entries[0, 1] = -Mathf.Sin(rad);
         entries[1, 0] = Mathf.Sin(rad);
-        entries[1, 1] = Mathf.Cos(rad);
+        entries[1, 1] = Mathf.Cos(rad); // rotation matrix 
     }
 
     public void setScalingMat(float scaleX, float scaleY)
